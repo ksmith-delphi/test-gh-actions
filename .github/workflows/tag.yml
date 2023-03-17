@@ -1,4 +1,4 @@
-name: "Production: Tag Release and Deploy"
+name: "Production: Tag Release"
 on:
   workflow_dispatch:
     inputs:
