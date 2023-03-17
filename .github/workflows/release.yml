@@ -3,11 +3,11 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: The version tag number to apply to release (vX.Y.Z)
+        description: The version tag to apply current mainbranch (X.Y.Z) - Do not include "v" prefix.
         required: true
         type: string
       release_name:
-        description: The name of the release to apply, generally this is a description of what is included.
+        description: The name of the release to apply; i.e what projects are included.
         required: true
         type: string
 
