@@ -25,8 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Clone schemas
-        uses: anecdotes-ai/snowflake-query@v1
+      - name: Snowflake Clone Schemas
+        uses: anecdotes-ai/snowflake-query@1.1
         id: clone_schemas
         with:
           snowflake_account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
