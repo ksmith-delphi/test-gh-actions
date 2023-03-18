@@ -1,0 +1,37 @@
+name: "Snowflake: Clone Data to Staging"
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_db:
+        description: The database to clone into the lower database.
+        required: true
+        type: choice
+        options:
+        - dwh
+        - lake
+        - stg_dwh
+      target_db:
+        description: The database that will be over-written/refreshed.
+        required: true
+        type: choice
+        options:
+        - stg_dwh
+        - stg_lake
+        - test_dwh
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Clone schemas
+        uses: anecdotes-ai/snowflake-query@v1
+        id: clone_schemas
+        with:
+          snowflake_account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          snowflake_warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+          snowflake_username: ${{ secrets.SNOWFLAKE_USER }}
+          snowflake_password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+          snowflake_role: 'SECURITYADMIN'
+          queries: 'CALL metadata.test.post_deployment_clone_data(''"${{ inputs.source_db }}"'', ''"${{ inputs.target_db }}"'')'
