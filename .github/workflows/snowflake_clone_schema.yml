@@ -34,4 +34,4 @@ jobs:
           snowflake_username: ${{ secrets.SNOWFLAKE_USER }}
           snowflake_password: ${{ secrets.SNOWFLAKE_PASSWORD }}
           snowflake_role: 'SECURITYADMIN'
-          queries: 'CALL metadata.test.post_deployment_clone_data(''"${{ inputs.source_db }}"'', ''"${{ inputs.target_db }}"'')'
+          queries: 'CALL metadata.test.post_deployment_clone_data(''${{ inputs.source_db }}'', ''${{ inputs.target_db }}'')'
